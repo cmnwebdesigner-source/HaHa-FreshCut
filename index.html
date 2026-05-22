@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HaHa FreshCut | George Ciprian</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -17,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -26,14 +28,14 @@
                         gold: {
                             DEFAULT: '#D4AF37',
                             light: '#F3E5AB',
-                            dark: '#AA8822',
+                            dark: '#AA8822'
                         },
                         black: '#050505',
-                        white: '#FFFFFF',
+                        white: '#FFFFFF'
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        serif: ['Playfair Display', 'serif']
                     }
                 }
             }
@@ -51,7 +53,9 @@
         }
 
         @media (min-width: 768px) {
-            body { padding-bottom: 0; }
+            body {
+                padding-bottom: 0;
+            }
         }
 
         .glass-nav {
@@ -64,13 +68,25 @@
         .divider-gold {
             border-bottom: 1px solid rgba(212, 175, 55, 0.15);
         }
-        
+
         .img-zoom {
             transition: transform 0.6s ease;
         }
 
         .group:hover .img-zoom {
             transform: scale(1.08);
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 45px rgba(212, 175, 55, 0.22);
+        }
+
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 1px solid rgba(212, 175, 55, 0.55);
         }
     </style>
 </head>
@@ -82,11 +98,11 @@
         <!-- Header Fix -->
         <header class="fixed top-0 w-full glass-nav z-50 transition-all duration-300">
             <div class="max-w-6xl mx-auto px-5 h-16 md:h-20 flex items-center justify-between">
-                
+
                 <a href="#acasa" class="font-serif text-xl md:text-2xl font-bold text-white tracking-widest uppercase">
                     HaHa <span class="text-gold italic font-normal lowercase">FreshCut</span>
                 </a>
-                
+
                 <nav class="hidden md:flex space-x-8 items-center">
                     <a href="#despre" class="text-xs font-medium text-gray-300 hover:text-gold uppercase tracking-widest transition">Despre</a>
                     <a href="#servicii" class="text-xs font-medium text-gray-300 hover:text-gold uppercase tracking-widest transition">Prețuri</a>
@@ -106,13 +122,13 @@
             <button id="close-menu-btn" class="absolute top-6 right-6 text-gold text-4xl p-2">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            
+
             <a href="#despre" class="mobile-link text-3xl font-serif italic text-white hover:text-gold transition">Despre George</a>
             <a href="#servicii" class="mobile-link text-3xl font-serif italic text-white hover:text-gold transition">Listă Prețuri</a>
             <a href="#program" class="mobile-link text-3xl font-serif italic text-white hover:text-gold transition">Program</a>
             <a href="#galerie" class="mobile-link text-3xl font-serif italic text-white hover:text-gold transition">Portofoliu</a>
             <a href="#contact" class="mobile-link text-3xl font-serif italic text-white hover:text-gold transition">Locație & Contact</a>
-            
+
             <div class="mt-8 pt-8 border-t border-gold/20 flex gap-6">
                 <a href="https://wa.me/40741917899" target="_blank" class="w-12 h-12 rounded-full border border-gold flex items-center justify-center text-gold">
                     <i class="fa-brands fa-whatsapp text-xl"></i>
@@ -132,7 +148,7 @@
 
             <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto mt-10" data-aos="fade-up" data-aos-duration="1000">
                 <p class="text-gold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-6 font-bold">Buzău &bull; Alexandru Marghiloman 203</p>
-                
+
                 <h1 class="text-6xl md:text-8xl font-serif text-white mb-2 uppercase tracking-wide">
                     HaHa
                 </h1>
@@ -140,11 +156,11 @@
                 <h2 class="text-5xl md:text-7xl font-serif italic text-gold mb-8">
                     FreshCut
                 </h2>
-                
+
                 <p class="text-gray-300 text-sm md:text-base font-light mb-10 max-w-md mx-auto leading-relaxed">
                     Eleganță, precizie și o experiență de top. Locul unde detaliile fac cu adevărat diferența.
                 </p>
-                
+
                 <a href="tel:+40741917899" class="inline-block px-8 py-4 bg-gold text-black font-bold uppercase tracking-widest text-xs transition active:scale-95">
                     Fă o programare
                 </a>
@@ -155,18 +171,19 @@
         <section id="despre" class="py-24 bg-white text-black relative">
             <div class="max-w-5xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-                    
+
+                    <!-- AICI AM ÎNLOCUIT POZA CU SCAUNUL CU POZA FRIZERULUI -->
                     <div class="w-full md:w-1/2" data-aos="fade-up">
-                        <div class="aspect-[4/5] w-full overflow-hidden">
-                            <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover grayscale">
+                        <div class="aspect-[4/5] w-full overflow-hidden bg-black gold-glow">
+                            <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center grayscale">
                         </div>
                     </div>
-                    
+
                     <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-up" data-aos-delay="100">
                         <span class="text-gold tracking-widest uppercase text-xs font-bold block mb-4">Master Barber</span>
                         <h2 class="text-3xl md:text-5xl font-serif mb-6 text-black">George Ciprian</h2>
                         <div class="w-16 h-px bg-gold mx-auto md:mx-0 mb-8"></div>
-                        
+
                         <p class="text-gray-700 font-light text-sm md:text-base leading-relaxed mb-6">
                             Pasiunea pentru meserie și atenția la detalii m-au determinat să creez HaHa FreshCut. Nu este doar un salon, este un loc dedicat imaginii masculine, creat din respect pentru clienți.
                         </p>
@@ -181,16 +198,16 @@
         <!-- Secțiunea Prețuri + Program -->
         <section class="py-24 bg-black text-white">
             <div class="max-w-6xl mx-auto px-6">
-                
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
-                    
+
                     <!-- LISTA PREȚURI -->
                     <div id="servicii" data-aos="fade-up">
                         <div class="text-center mb-10">
                             <i class="fa-solid fa-scissors text-gold text-2xl mb-4"></i>
                             <h3 class="text-3xl md:text-4xl font-serif text-white italic">Listă prețuri</h3>
                         </div>
-                        
+
                         <div class="flex justify-end gap-10 md:gap-14 text-gray-500 italic font-serif text-sm md:text-base mb-4 px-2">
                             <span>Lei</span>
                             <span>Timp</span>
@@ -269,7 +286,7 @@
                             <i class="fa-regular fa-clock text-gold text-2xl mb-4"></i>
                             <h3 class="text-3xl md:text-4xl font-serif text-white italic">Program</h3>
                         </div>
-                        
+
                         <div class="space-y-0 text-sm md:text-base font-light px-2">
                             <div class="flex justify-between items-center py-5 divider-gold">
                                 <span class="font-serif text-base md:text-lg">Luni</span>
@@ -306,7 +323,7 @@
                                 <span class="text-gold italic text-[11px] md:text-xs text-right leading-relaxed">DOAR pe baza<br>programărilor</span>
                             </div>
                         </div>
-                        
+
                         <div class="mt-12 text-center">
                             <a href="tel:+40741917899" class="inline-block border border-gold text-gold px-6 py-3 text-xs uppercase tracking-widest font-bold hover:bg-gold hover:text-black transition">
                                 Rezervă locul tău
@@ -325,9 +342,10 @@
                     <h2 class="text-3xl md:text-4xl font-serif text-white mb-4">Portofoliu</h2>
                     <p class="text-gray-500 font-light text-sm uppercase tracking-widest">Rezultate. Fără filtre.</p>
                 </div>
-                
+
+                <!-- AM ȘTERS POZA 3f667... DIN PORTOFOLIU. AIA E LOGO ȘI ESTE JOS LA CREDITE. -->
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-4">
-                    
+
                     <div class="aspect-square bg-black overflow-hidden relative group" data-aos="fade-up" data-aos-delay="0">
                         <img src="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
                     </div>
@@ -359,24 +377,20 @@
         <!-- Secțiune Locație & Contact -->
         <section id="contact" class="py-24 bg-white text-black">
             <div class="max-w-5xl mx-auto px-6">
-                
+
                 <div class="text-center mb-12" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-serif text-black mb-4">Locație & Contact</h2>
                     <p class="text-gray-600">Programează-te telefonic sau vizitează-ne.</p>
                 </div>
-                
+
                 <div class="flex flex-col md:flex-row bg-[#FAFAFA] border border-gray-200 rounded-lg overflow-hidden shadow-sm" data-aos="fade-up">
-                    
+
                     <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center md:text-left">
                         <i class="fa-solid fa-location-dot text-gold text-3xl mb-6 mx-auto md:mx-0"></i>
 
                         <h3 class="text-2xl font-serif text-black mb-2">Unde ne găsești?</h3>
+                        <p class="text-gray-600 font-light mb-8">Strada Alexandru Marghiloman 203<br>Buzău, România</p>
 
-                        <p class="text-gray-600 font-light mb-8">
-                            Strada Alexandru Marghiloman 203<br>
-                            Buzău, România
-                        </p>
-                        
                         <a href="https://maps.google.com/?q=Strada+Alexandru+Marghiloman+203+Buzau" target="_blank" class="inline-flex items-center justify-center md:justify-start font-bold uppercase text-[11px] md:text-xs tracking-widest text-gold hover:text-black transition mb-10">
                             <i class="fa-solid fa-map mr-2 text-lg"></i> Deschide în Google Maps
                         </a>
@@ -388,7 +402,7 @@
                         <a href="tel:+40741917899" class="text-2xl md:text-3xl font-serif text-black hover:text-gold transition block mb-6">
                             0741 917 899
                         </a>
-                        
+
                         <div class="flex justify-center md:justify-start gap-4">
                             <a href="https://wa.me/40741917899" target="_blank" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -399,9 +413,9 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="w-full md:w-1/2 h-64 md:h-auto bg-gray-200 relative">
-                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Harta Buzau" class="object-cover w-full h-full grayscale opacity-70">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Harta Buzău" class="object-cover w-full h-full grayscale opacity-70">
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <div class="w-16 h-16 bg-black/80 rounded-full border border-gold flex items-center justify-center shadow-2xl">
                                 <i class="fa-solid fa-location-dot text-gold text-2xl animate-pulse"></i>
@@ -410,11 +424,10 @@
                     </div>
 
                 </div>
-
             </div>
         </section>
 
-        <!-- Footer -->
+        <!-- Footer CU LOGO-UL TĂU JOS -->
         <footer class="bg-black py-12 text-center border-t border-white/10">
             <div class="font-serif text-xl font-bold text-white tracking-widest mb-4 uppercase">
                 HaHa <span class="text-gold italic font-normal lowercase">FreshCut</span>
@@ -422,24 +435,28 @@
 
             <p class="text-gray-500 font-light text-sm mb-8">George Ciprian &bull; Buzău</p>
 
-            <!-- Credite WebDesigner -->
-            <div class="flex flex-col items-center justify-center gap-3 mb-8">
-                <img src="images/3f667d8d-2cdc-48f4-8d30-39de42ded335.jpg" alt="CMN WebDesigner" class="w-14 h-14 rounded-full object-cover border border-gold/40">
+            <!-- AICI AM PUS LOGO-UL TĂU 3f667... LA CREDITE, NU ÎN PORTOFOLIU -->
+            <div class="mx-auto max-w-md px-4 mb-8">
+                <div class="flex items-center justify-center gap-4 rounded-full border border-gold/20 bg-white/5 px-4 py-3">
+                    <img src="images/3f667d8d-2cdc-48f4-8d30-39de42ded335.jpg" alt="CMN WebDesigner Logo" class="footer-logo">
 
-                <div class="text-center">
-                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.25em] mb-2">Website realizat de</p>
-                    
-                    <div class="flex items-center justify-center gap-3 flex-wrap">
-                        <span class="text-white font-serif text-lg">CMN WebDesigner</span>
-                        
-                        <a href="https://linkul-tau-aici.ro" target="_blank" class="text-gold text-[10px] uppercase tracking-widest font-bold border border-gold/40 px-3 py-1 hover:bg-gold hover:text-black transition">
-                            Vezi site web
-                        </a>
+                    <div class="text-left">
+                        <p class="text-[9px] text-gray-500 uppercase tracking-[0.22em] mb-1">Website realizat de</p>
+
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span class="text-white font-serif text-base md:text-lg leading-none">CMN WebDesigner</span>
+
+                            <a href="https://linkul-tau-aici.ro" target="_blank" class="text-gold text-[10px] uppercase tracking-widest font-bold hover:text-white transition">
+                                Vezi site web
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <p class="text-[10px] text-gray-600 uppercase tracking-widest">&copy; <span id="year"></span> Toate drepturile rezervate.</p>
+            <p class="text-[10px] text-gray-600 uppercase tracking-widest">
+                &copy; <span id="year"></span> Toate drepturile rezervate.
+            </p>
         </footer>
 
     </div>
@@ -461,11 +478,11 @@
 
     <!-- Scripturi -->
     <script>
-        AOS.init({ 
-            once: true, 
-            offset: 50, 
-            duration: 800, 
-            easing: 'ease-out' 
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out'
         });
 
         const header = document.querySelector('header');
