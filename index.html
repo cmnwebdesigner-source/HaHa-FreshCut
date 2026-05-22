@@ -6,6 +6,8 @@
     <title>HaHa FreshCut | George Ciprian</title>
     <meta name="description" content="HaHa FreshCut de George Ciprian. Frizerie premium în Buzău. Tuns clasic, fade, aranjat barbă. Programează-te acum!">
 
+    <link rel="preload" as="image" href="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -70,7 +72,14 @@
             background-color: #050505;
             color: #FFFFFF;
             padding-bottom: 70px;
+            max-width: 100%;
+            overscroll-behavior-x: none;
+            -webkit-overflow-scrolling: touch;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-padding-top: 70px;
         }
 
         @media (min-width: 768px) {
@@ -417,6 +426,37 @@
             .stats-label { font-size: 8px; letter-spacing: .1em; }
             .barbering-label { font-size: 8.5px; letter-spacing: .26em; margin-bottom: 12px; }
         }
+
+        /* Fix-uri tehnice mobile: fără schimbări vizuale */
+        @media (max-width: 767px) {
+            section {
+                overflow-x: clip;
+            }
+
+            #acasa,
+            #despre,
+            #barber-photo-frame,
+            .photo-box-v7,
+            .photo-box-v7 img {
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+                transform: translateZ(0);
+            }
+
+            .gold-dust-layer-1,
+            .gold-dust-layer-2,
+            .photo-spark {
+                will-change: transform, opacity;
+            }
+        }
+
+        @supports not (overflow: clip) {
+            @media (max-width: 767px) {
+                section {
+                    overflow-x: hidden;
+                }
+            }
+        }
     </style>
 </head>
 
@@ -460,7 +500,7 @@
         </header>
 
         <!-- Meniu Mobil Pop-up -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black/98 backdrop-blur-3xl z-[100] flex flex-col items-center justify-center space-y-7 transform translate-x-full transition-transform duration-400 ease-in-out">
+        <div id="mobile-menu" class="fixed inset-0 bg-black/98 backdrop-blur-3xl z-[100] flex flex-col items-center justify-center space-y-7 transform translate-x-full transition-transform duration-[400ms] ease-in-out">
             <button id="close-menu-btn" aria-label="Închide meniul" class="absolute top-5 right-5 text-gold text-4xl p-2 tap-target">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -536,7 +576,7 @@
                         <div class="w-full md:w-1/2 relative max-w-[280px] md:max-w-none mx-auto">
                             <div id="barber-photo-frame" class="george-frame-v7 w-full">
                                 <div class="photo-box-v7 aspect-[4/5] w-full relative">
-                                    <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center transition duration-700 relative z-10">
+                                    <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" loading="eager" decoding="async" fetchpriority="high" class="w-full h-full object-cover object-center transition duration-700 relative z-10">
                                     
                                     <!-- Scântei aurii animate pe poza -->
                                     <div class="photo-spark spark-1"></div>
@@ -883,12 +923,18 @@
     <!-- Scripturi -->
     <script>
         // Init AOS Animations
-        AOS.init({
-            once: true,
-            offset: 40,
-            duration: 800,
-            easing: 'ease-out-cubic'
-        });
+        if (window.AOS) {
+            AOS.init({
+                once: true,
+                offset: 40,
+                duration: 800,
+                easing: 'ease-out-cubic'
+            });
+
+            window.addEventListener('load', () => {
+                AOS.refreshHard();
+            });
+        }
 
         // Sticky Header effect
         const header = document.querySelector('header');
@@ -924,22 +970,53 @@
         const counterElement = document.getElementById('clientsCounter');
         const targetNumber = 300; 
         const duration = 2000;
+        let counterStarted = false;
 
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    counterElement.innerText = Math.floor(progress * targetNumber);
-                    if (progress < 1) window.requestAnimationFrame(step);
-                };
-                window.requestAnimationFrame(step);
-                observer.disconnect(); 
+        function animateClientsCounter() {
+            if (!counterElement || counterStarted) return;
+            counterStarted = true;
+
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                counterElement.innerText = Math.floor(progress * targetNumber);
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    counterElement.innerText = targetNumber;
+                }
+            };
+
+            window.requestAnimationFrame(step);
+        }
+
+        if (counterElement) {
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        animateClientsCounter();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.25 });
+
+                observer.observe(counterElement);
+            } else {
+                animateClientsCounter();
             }
-        });
-        if(counterElement) {
-            observer.observe(counterElement);
+
+            const checkCounterFallback = () => {
+                if (counterStarted) return;
+                const rect = counterElement.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    animateClientsCounter();
+                    window.removeEventListener('scroll', checkCounterFallback);
+                }
+            };
+
+            window.addEventListener('scroll', checkCounterFallback, { passive: true });
+            window.addEventListener('load', checkCounterFallback);
         }
 
         // Lightbox Gallery Logic (with mobile swipe support)
@@ -957,10 +1034,12 @@
             const imgSrc = galleryItems[currentImageIndex].getAttribute('data-img');
             lightboxImg.src = imgSrc;
             lightbox.classList.add('is-open');
+            document.body.classList.add('lightbox-open');
             document.body.style.overflow = 'hidden';
         }
         function closeLightbox() {
             lightbox.classList.remove('is-open');
+            document.body.classList.remove('lightbox-open');
             setTimeout(() => { lightboxImg.src = ''; }, 300); // curăță imaginea după tranziție
             document.body.style.overflow = '';
         }
