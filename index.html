@@ -522,6 +522,66 @@
             }
         }
 
+
+        /* Contur gold la scroll pentru carduri si poza */
+        .scroll-outline {
+            position: relative;
+            overflow: visible;
+        }
+
+        .scroll-outline::before,
+        .scroll-outline::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            border: 1px solid rgba(212, 175, 55, 0.85);
+            border-radius: inherit;
+            opacity: 0.95;
+            z-index: 4;
+            transition: clip-path .18s linear, transform .18s linear;
+        }
+
+        .scroll-outline::before {
+            inset: -7px;
+            clip-path: inset(0 calc(100% - var(--outlineProgress, 0%)) calc(100% - var(--outlineProgress, 0%)) 0);
+        }
+
+        .scroll-outline::after {
+            inset: -13px;
+            border-color: rgba(255, 255, 255, 0.22);
+            clip-path: inset(calc(100% - var(--outlineProgress, 0%)) 0 0 calc(100% - var(--outlineProgress, 0%)));
+        }
+
+        .animated-service-card::before,
+        .animated-service-card::after {
+            display: none !important;
+        }
+
+        .animated-service-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-row:hover {
+            transform: none !important;
+            background: transparent !important;
+            padding-left: inherit !important;
+        }
+
+        .barber-photo-frame::before,
+        .barber-photo-frame::after {
+            clip-path: inset(0 calc(100% - var(--outlineProgress, 0%)) calc(100% - var(--outlineProgress, 0%)) 0);
+            transform: none !important;
+        }
+
+        .barber-photo-frame::after {
+            clip-path: inset(calc(100% - var(--outlineProgress, 0%)) 0 0 calc(100% - var(--outlineProgress, 0%)));
+        }
+
+        .barber-moving-line {
+            display: none !important;
+        }
+
     </style>
 </head>
 
@@ -661,7 +721,7 @@
 
                         <!-- Poza frizerului -->
                         <div class="w-full md:w-1/2">
-                            <div id="barber-photo-frame" class="barber-photo-frame aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
+                            <div id="barber-photo-frame" class="barber-photo-frame scroll-outline aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
                                 <span class="barber-moving-line top"></span>
                                 <span class="barber-moving-line bottom"></span>
                                 <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition duration-700">
@@ -709,7 +769,7 @@
                 <div class="grid grid-cols-2 gap-3 md:gap-6 lg:gap-12">
 
                     <!-- LISTA PREȚURI -->
-                    <div id="servicii" class="premium-card animated-service-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
+                    <div id="servicii" class="premium-card scroll-outline rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
                         <div class="text-center mb-5 md:mb-10">
                             <i class="fa-solid fa-scissors text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Listă prețuri</h3>
@@ -788,7 +848,7 @@
                     </div>
 
                     <!-- PROGRAM -->
-                    <div id="program" class="premium-card animated-service-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
+                    <div id="program" class="premium-card scroll-outline rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
                         <div class="text-center mb-5 md:mb-12">
                             <i class="fa-regular fa-clock text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Program</h3>
@@ -855,37 +915,37 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="0" data-img="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg">
-                        <img src="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="50" data-img="images/4460f930-320b-4943-92c4-ae94e95cf6b2.jpg">
-                        <img src="images/4460f930-320b-4943-92c4-ae94e95cf6b2.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/4460f930-320b-4943-92c4-ae94e95cf6b2.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="100" data-img="images/57f6681b-5a9c-4e4d-9d93-a0e2ccf01d65.jpg">
-                        <img src="images/57f6681b-5a9c-4e4d-9d93-a0e2ccf01d65.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/57f6681b-5a9c-4e4d-9d93-a0e2ccf01d65.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="150" data-img="images/89be624e-83c4-4b59-bc5c-0923ff84fe01.jpg">
-                        <img src="images/89be624e-83c4-4b59-bc5c-0923ff84fe01.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/89be624e-83c4-4b59-bc5c-0923ff84fe01.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="200" data-img="images/a51b8208-a51e-4dff-8b90-b1e3686c36ba.jpg">
-                        <img src="images/a51b8208-a51e-4dff-8b90-b1e3686c36ba.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/a51b8208-a51e-4dff-8b90-b1e3686c36ba.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
 
                     <button type="button" class="gallery-item aspect-square reveal-soft bg-black overflow-hidden relative group rounded-2xl border border-gold/10" data-aos="fade-up" data-aos-delay="250" data-img="images/ac6ad156-08c0-4d1a-b706-b57015acd073.jpg">
-                        <img src="images/ac6ad156-08c0-4d1a-b706-b57015acd073.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover grayscale img-zoom group-hover:grayscale-0">
+                        <img src="images/ac6ad156-08c0-4d1a-b706-b57015acd073.jpg" alt="Portofoliu HaHa FreshCut" class="w-full h-full object-cover img-zoom">
                         <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></span>
                         <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-black/70 border border-gold/35 text-gold flex items-center justify-center opacity-0 group-hover:opacity-100 transition"><i class="fa-solid fa-expand"></i></span>
                     </button>
@@ -906,9 +966,9 @@
 
                 <div class="premium-card rounded-3xl overflow-hidden" data-aos="fade-up">
 
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="grid grid-cols-1">
 
-                        <div class="p-6 md:p-10 flex flex-col justify-center text-center md:text-left">
+                        <div class="p-6 md:p-10 flex flex-col justify-center text-center md:text-left max-w-2xl mx-auto w-full">
                             <i class="fa-solid fa-location-dot text-gold text-3xl mb-6 mx-auto md:mx-0"></i>
 
                             <h3 class="text-2xl font-serif text-white mb-2">Unde ne găsești?</h3>
@@ -944,17 +1004,6 @@
                             </div>
                         </div>
 
-                        <div class="min-h-[260px] md:min-h-[420px] bg-black relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=900&q=80" alt="Hartă Buzău" class="object-cover w-full h-full grayscale opacity-45">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-black via-black/20 to-gold/10"></div>
-                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div class="relative">
-                                    <div class="absolute inset-0 rounded-full bg-gold/30 blur-xl animate-pulseGold"></div>
-                                    <div class="relative w-16 h-16 bg-black/85 rounded-full border border-gold flex items-center justify-center shadow-2xl">
-                                        <i class="fa-solid fa-location-dot text-gold text-2xl animate-pulse"></i>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -1131,21 +1180,26 @@
         });
 
 
-        // Linii care se mișcă pe lângă poza lui George când glisezi
-        const barberPhotoFrame = document.getElementById('barber-photo-frame');
+        // Contururi gold care se desenează când glisezi
+        const scrollOutlineElements = document.querySelectorAll('.scroll-outline');
 
-        function animateBarberLinesOnScroll() {
-            if (!barberPhotoFrame) return;
-            const rect = barberPhotoFrame.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            const progress = Math.max(-1, Math.min(1, (windowHeight / 2 - rect.top) / windowHeight));
-            barberPhotoFrame.style.setProperty('--lineShift', `${progress * 28}px`);
+        function updateScrollOutlines() {
+            scrollOutlineElements.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                const start = windowHeight * 0.92;
+                const end = windowHeight * 0.28;
+                const rawProgress = (start - rect.top) / (start - end);
+                const progress = Math.max(0, Math.min(1, rawProgress));
+                element.style.setProperty('--outlineProgress', `${progress * 100}%`);
+            });
         }
 
-        window.addEventListener('scroll', animateBarberLinesOnScroll, { passive: true });
-        animateBarberLinesOnScroll();
+        window.addEventListener('scroll', updateScrollOutlines, { passive: true });
+        window.addEventListener('resize', updateScrollOutlines);
+        updateScrollOutlines();
 
-        document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
 </body>
