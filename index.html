@@ -582,6 +582,112 @@
             display: none !important;
         }
 
+
+        /* V5: linii premium in pierdere, merg singure - fara contur dublu */
+        .premium-card {
+            border: 0 !important;
+        }
+
+        .premium-line-frame {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.14) !important;
+        }
+
+        .premium-line-frame::before,
+        .premium-line-frame::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: 8;
+            opacity: .95;
+            border-radius: inherit;
+        }
+
+        .premium-line-frame::before {
+            inset: 0;
+            padding: 1px;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(212,175,55,0) 18%, rgba(212,175,55,.9) 50%, rgba(212,175,55,0) 82%, transparent 100%) top left / 45% 1px no-repeat,
+                linear-gradient(180deg, transparent 0%, rgba(212,175,55,0) 18%, rgba(212,175,55,.9) 50%, rgba(212,175,55,0) 82%, transparent 100%) top right / 1px 45% no-repeat,
+                linear-gradient(90deg, transparent 0%, rgba(212,175,55,0) 18%, rgba(212,175,55,.9) 50%, rgba(212,175,55,0) 82%, transparent 100%) bottom right / 45% 1px no-repeat,
+                linear-gradient(180deg, transparent 0%, rgba(212,175,55,0) 18%, rgba(212,175,55,.9) 50%, rgba(212,175,55,0) 82%, transparent 100%) bottom left / 1px 45% no-repeat;
+            animation: lostLineFrame 5.8s ease-in-out infinite;
+        }
+
+        .premium-line-frame::after {
+            inset: 10px;
+            background:
+                linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent) top right / 34% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(255,255,255,.22), transparent) bottom right / 1px 34% no-repeat,
+                linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) bottom left / 34% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(255,255,255,.18), transparent) top left / 1px 34% no-repeat;
+            animation: lostLineFrameReverse 7s ease-in-out infinite;
+        }
+
+        @keyframes lostLineFrame {
+            0% {
+                background-position: top left, top right, bottom right, bottom left;
+                filter: drop-shadow(0 0 2px rgba(212,175,55,.2));
+            }
+            50% {
+                background-position: top right, bottom right, bottom left, top left;
+                filter: drop-shadow(0 0 8px rgba(212,175,55,.55));
+            }
+            100% {
+                background-position: top left, top right, bottom right, bottom left;
+                filter: drop-shadow(0 0 2px rgba(212,175,55,.2));
+            }
+        }
+
+        @keyframes lostLineFrameReverse {
+            0% {
+                background-position: top right, bottom right, bottom left, top left;
+                opacity: .3;
+            }
+            50% {
+                background-position: top left, top right, bottom right, bottom left;
+                opacity: .75;
+            }
+            100% {
+                background-position: top right, bottom right, bottom left, top left;
+                opacity: .3;
+            }
+        }
+
+        .barber-photo-frame {
+            overflow: hidden !important;
+        }
+
+        .barber-photo-frame::before,
+        .barber-photo-frame::after {
+            display: none !important;
+        }
+
+        .barber-moving-line {
+            display: none !important;
+        }
+
+        .scroll-outline::before,
+        .scroll-outline::after {
+            display: none !important;
+        }
+
+        .animated-service-card::before,
+        .animated-service-card::after {
+            display: none !important;
+        }
+
+        .price-row {
+            transition: background .25s ease;
+        }
+
+        .price-row:hover {
+            transform: none !important;
+            background: rgba(212, 175, 55, .045) !important;
+            padding-left: inherit !important;
+        }
+
     </style>
 </head>
 
@@ -721,9 +827,7 @@
 
                         <!-- Poza frizerului -->
                         <div class="w-full md:w-1/2">
-                            <div id="barber-photo-frame" class="barber-photo-frame scroll-outline aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
-                                <span class="barber-moving-line top"></span>
-                                <span class="barber-moving-line bottom"></span>
+                            <div id="barber-photo-frame" class="barber-photo-frame premium-line-frame aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
                                 <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition duration-700">
                             </div>
                         </div>
@@ -769,7 +873,7 @@
                 <div class="grid grid-cols-2 gap-3 md:gap-6 lg:gap-12">
 
                     <!-- LISTA PREȚURI -->
-                    <div id="servicii" class="premium-card scroll-outline rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
+                    <div id="servicii" class="premium-card premium-line-frame rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
                         <div class="text-center mb-5 md:mb-10">
                             <i class="fa-solid fa-scissors text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Listă prețuri</h3>
@@ -848,7 +952,7 @@
                     </div>
 
                     <!-- PROGRAM -->
-                    <div id="program" class="premium-card scroll-outline rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
+                    <div id="program" class="premium-card premium-line-frame rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
                         <div class="text-center mb-5 md:mb-12">
                             <i class="fa-regular fa-clock text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Program</h3>
@@ -1179,25 +1283,6 @@
             if (event.key === 'ArrowLeft') showPrevImage();
         });
 
-
-        // Contururi gold care se desenează când glisezi
-        const scrollOutlineElements = document.querySelectorAll('.scroll-outline');
-
-        function updateScrollOutlines() {
-            scrollOutlineElements.forEach((element) => {
-                const rect = element.getBoundingClientRect();
-                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                const start = windowHeight * 0.92;
-                const end = windowHeight * 0.28;
-                const rawProgress = (start - rect.top) / (start - end);
-                const progress = Math.max(0, Math.min(1, rawProgress));
-                element.style.setProperty('--outlineProgress', `${progress * 100}%`);
-            });
-        }
-
-        window.addEventListener('scroll', updateScrollOutlines, { passive: true });
-        window.addEventListener('resize', updateScrollOutlines);
-        updateScrollOutlines();
 
 document.getElementById('year').textContent = new Date().getFullYear();
     </script>
