@@ -810,6 +810,140 @@
             }
         }
 
+
+        /* V7 FIX: hero curat ca referinta - textul nu mai este aruncat sus */
+        .hero-content-up {
+            transform: none !important;
+            margin-top: 0 !important;
+            padding-top: 34px;
+        }
+
+        .hero-clean-section {
+            min-height: 82vh !important;
+            align-items: flex-start !important;
+            padding-top: 74px !important;
+            overflow: hidden;
+        }
+
+        .hero-bg-photo {
+            opacity: .42 !important;
+            object-position: center 32%;
+        }
+
+        .hero-main-title {
+            letter-spacing: .16em;
+            line-height: .92;
+        }
+
+        .hero-main-subtitle {
+            line-height: .95;
+        }
+
+        .hero-haircut-preview {
+            display: none !important;
+        }
+
+        .hero-text-box {
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* George Ciprian - linii clare pe poză */
+        .george-frame-v7 {
+            position: relative;
+            padding: 12px;
+            border-radius: 28px;
+            overflow: visible !important;
+        }
+
+        .george-frame-v7 .photo-box-v7 {
+            position: relative;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #050505;
+            box-shadow: 0 0 55px rgba(212, 175, 55, 0.20);
+        }
+
+        .george-frame-v7::before,
+        .george-frame-v7::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            border-radius: 28px;
+            z-index: 10;
+        }
+
+        .george-frame-v7::before {
+            inset: 0;
+            background:
+                linear-gradient(90deg, transparent, rgba(212,175,55,.95), transparent) top left / 62% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(212,175,55,.95), transparent) top right / 1px 62% no-repeat,
+                linear-gradient(90deg, transparent, rgba(212,175,55,.95), transparent) bottom right / 62% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(212,175,55,.95), transparent) bottom left / 1px 62% no-repeat;
+            animation: georgeFrameMove 5.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(212,175,55,.55));
+        }
+
+        .george-frame-v7::after {
+            inset: 10px;
+            background:
+                linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent) top right / 42% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(255,255,255,.25), transparent) bottom right / 1px 42% no-repeat,
+                linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent) bottom left / 42% 1px no-repeat,
+                linear-gradient(180deg, transparent, rgba(255,255,255,.18), transparent) top left / 1px 42% no-repeat;
+            animation: georgeFrameMoveReverse 6.4s ease-in-out infinite;
+        }
+
+        @keyframes georgeFrameMove {
+            0%, 100% {
+                background-position: top left, top right, bottom right, bottom left;
+                opacity: .55;
+            }
+            50% {
+                background-position: top right, bottom right, bottom left, top left;
+                opacity: 1;
+            }
+        }
+
+        @keyframes georgeFrameMoveReverse {
+            0%, 100% {
+                background-position: top right, bottom right, bottom left, top left;
+                opacity: .32;
+            }
+            50% {
+                background-position: top left, top right, bottom right, bottom left;
+                opacity: .82;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-clean-section {
+                min-height: 82vh !important;
+                padding-top: 62px !important;
+            }
+
+            .hero-content-up {
+                padding-top: 28px;
+            }
+
+            .hero-main-title {
+                font-size: clamp(3.2rem, 17vw, 5rem) !important;
+                line-height: .86;
+                letter-spacing: .12em;
+            }
+
+            .hero-main-subtitle {
+                font-size: clamp(3.05rem, 15vw, 4.6rem) !important;
+                line-height: .95;
+            }
+
+            .hero-text-box p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        }
+
     </style>
 </head>
 
@@ -868,9 +1002,9 @@
         </div>
 
         <!-- Hero Section -->
-        <section id="acasa" class="relative min-h-[92vh] flex items-center justify-center pt-14 md:pt-20 bg-black">
+        <section id="acasa" class="hero-clean-section relative min-h-[82vh] flex justify-center bg-black">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1400&q=80" alt="Fundal Frizerie" class="w-full h-full object-cover object-center grayscale opacity-30">
+                <img src="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg" alt="Tunsoare HaHa FreshCut" class="hero-bg-photo w-full h-full object-cover">
                 <div class="absolute inset-0 hero-grid opacity-70"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/76 to-black/55"></div>
                 <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[280px] md:w-[520px] h-[280px] md:h-[520px] rounded-full border border-gold/20 animate-softSpin"></div>
@@ -880,15 +1014,15 @@
             <div class="hero-content-up relative z-10 text-center px-4 w-full max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="900">
                 <p class="text-gold tracking-[0.32em] uppercase text-[9px] md:text-xs mb-5 md:mb-6 font-bold">Buzău &bull; Alexandru Marghiloman 203</p>
 
-                <h1 class="mobile-tight-title text-6xl md:text-8xl font-serif text-white mb-1 uppercase tracking-wide">
+                <h1 class="hero-main-title mobile-tight-title text-6xl md:text-8xl font-serif text-white mb-1 uppercase tracking-wide">
                     HaHa
                 </h1>
 
-                <h2 class="mobile-subtitle text-5xl md:text-7xl font-serif italic gold-text-shine mb-7 md:mb-8">
+                <h2 class="hero-main-subtitle mobile-subtitle text-5xl md:text-7xl font-serif italic gold-text-shine mb-7 md:mb-8">
                     FreshCut
                 </h2>
 
-                <div class="gold-line max-w-xs mx-auto mb-7"></div>
+                <div class="gold-line max-w-sm mx-auto mb-8"></div>
 
                 <p class="text-gray-300 text-[13px] md:text-base font-light mb-4 max-w-md mx-auto leading-relaxed">
                     Eleganță, precizie și o experiență de top. Locul unde detaliile fac cu adevărat diferența.
@@ -898,11 +1032,6 @@
                     <a href="tel:+40741917899" class="tap-target w-full sm:w-auto inline-flex justify-center items-center px-7 py-3.5 bg-gold text-black font-bold uppercase tracking-widest text-[11px] transition active:scale-95 hover:bg-white">
                         Fă o programare
                     </a>
-                </div>
-
-                <!-- Poză tunsoare sub scrisul principal -->
-                <div class="hero-haircut-preview" aria-label="Tunsoare HaHa FreshCut">
-                    <img src="images/0ecb2467-10f5-4f69-b32f-91eafd5edb47.jpg" alt="Tunsoare HaHa FreshCut">
                 </div>
             </div>
         </section>
@@ -915,13 +1044,8 @@
 
                         <!-- Poza frizerului -->
                         <div class="w-full md:w-1/2">
-                            <div id="barber-photo-frame" class="george-frame w-full">
-                                <span class="george-line top"></span>
-                                <span class="george-line right"></span>
-                                <span class="george-line bottom"></span>
-                                <span class="george-line left"></span>
-
-                                <div class="photo-box aspect-[4/5] w-full">
+                            <div id="barber-photo-frame" class="george-frame-v7 w-full">
+                                <div class="photo-box-v7 aspect-[4/5] w-full">
                                     <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition duration-700">
                                 </div>
                             </div>
