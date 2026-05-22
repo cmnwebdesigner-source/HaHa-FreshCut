@@ -454,7 +454,7 @@
         }
 
 
-        /* Meniu mobil premium: mic, discret, fără chenare grele */
+        /* Meniu mobil premium: compact, fără chenare grele */
         #mobile-menu-backdrop {
             opacity: 0;
             pointer-events: none;
@@ -464,7 +464,7 @@
             pointer-events: auto;
         }
         #mobile-menu {
-            transform: translate3d(112%, -8px, 0) scale(.96);
+            transform: translate3d(110%, -8px, 0) scale(.94);
             transform-origin: top right;
             opacity: 0;
             pointer-events: none;
@@ -475,27 +475,56 @@
             opacity: 1;
             pointer-events: auto;
         }
-        .mobile-menu-title {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: .34em;
-            text-transform: uppercase;
+        .quick-menu-shell {
+            background:
+                radial-gradient(circle at top right, rgba(212,175,55,.16), transparent 42%),
+                linear-gradient(145deg, rgba(18,18,18,.96), rgba(5,5,5,.92));
+            box-shadow: 0 22px 70px rgba(0,0,0,.72), 0 0 24px rgba(212,175,55,.12);
         }
-        .mobile-drawer-link {
-            background: transparent;
+        .quick-menu-link,
+        .quick-menu-social {
             border: 0;
             box-shadow: none;
         }
-        .mobile-drawer-link:active {
-            transform: scale(.985);
+        .quick-menu-link {
+            background: rgba(255,255,255,.065);
         }
-        .mobile-social-btn {
-            background: rgba(255,255,255,.055);
-            border: 0;
-            box-shadow: 0 12px 30px rgba(0,0,0,.22);
+        .quick-menu-social {
+            background: rgba(255,255,255,.06);
+        }
+        .quick-menu-link:active,
+        .quick-menu-social:active {
+            transform: scale(.97);
         }
         .bottom-call-bar {
             background: linear-gradient(135deg, rgba(212,175,55,.96), rgba(255,242,184,.92), rgba(212,175,55,.96));
             box-shadow: 0 10px 35px rgba(0,0,0,.45), 0 0 24px rgba(212,175,55,.24);
+        }
+
+        /* Modal Termeni și condiții */
+        #terms-modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .24s ease;
+        }
+        #terms-modal.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #terms-panel {
+            transform: translateY(18px) scale(.97);
+            opacity: 0;
+            transition: transform .24s ease, opacity .24s ease;
+            max-height: 55vh;
+        }
+        #terms-modal.is-open #terms-panel {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        @media (min-width: 768px) {
+            #terms-panel {
+                max-height: 58vh;
+            }
         }
 
         /* Fix-uri tehnice mobile: fără schimbări vizuale */
@@ -575,12 +604,12 @@
                     <a href="tel:+40741917899" class="tap-target inline-flex items-center text-xs font-bold bg-gold text-black px-5 py-2 hover:bg-white transition uppercase tracking-widest shadow-[0_0_15px_rgba(212,175,55,0.3)]">Sună Acum</a>
                 </nav>
 
-                <!-- Meniu Hamburger Premium -->
-                <button id="mobile-menu-btn" aria-label="Deschide meniul" class="md:hidden tap-target relative z-10 h-10 px-2.5 rounded-full bg-black/35 backdrop-blur-xl flex items-center gap-2 focus:outline-none active:scale-[0.96] transition group">
-                    <span class="mobile-menu-title text-[10px] text-gold leading-none">Meniu</span>
-                    <span class="flex flex-col gap-[4px] items-end">
-                        <span class="block w-5 h-[1.5px] bg-gold rounded-full transition-all duration-300 group-hover:w-6"></span>
-                        <span class="block w-3 h-[1.5px] bg-gold/80 rounded-full transition-all duration-300 group-hover:w-5"></span>
+                <!-- Buton meniu rapid premium -->
+                <button id="mobile-menu-btn" aria-label="Deschide meniul rapid" class="md:hidden tap-target relative z-10 h-10 w-10 rounded-full bg-black/35 backdrop-blur-xl flex items-center justify-center focus:outline-none active:scale-[0.96] transition group shadow-[0_10px_26px_rgba(0,0,0,0.35)]">
+                    <span class="relative flex h-5 w-5 items-center justify-center">
+                        <span class="absolute top-[3px] right-0 block w-5 h-[1.5px] bg-gold rounded-full transition-all duration-300 group-hover:w-4"></span>
+                        <span class="absolute top-[9px] right-0 block w-3.5 h-[1.5px] bg-gold/85 rounded-full transition-all duration-300 group-hover:w-5"></span>
+                        <span class="absolute bottom-[3px] right-0 block w-5 h-[1.5px] bg-gold rounded-full transition-all duration-300 group-hover:w-3.5"></span>
                     </span>
                 </button>
             </div>
@@ -589,49 +618,50 @@
         <!-- Meniu Mobil Premium - panou lateral -->
         <div id="mobile-menu-backdrop" class="md:hidden fixed inset-0 bg-transparent z-[95] transition-opacity duration-300"></div>
 
-        <div id="mobile-menu" class="md:hidden fixed top-[64px] right-3 w-[72vw] max-w-[280px] bg-black/88 backdrop-blur-2xl z-[100] rounded-[1.55rem] shadow-[0_20px_70px_rgba(0,0,0,0.72)] flex flex-col p-4 transition-all duration-300 ease-out overflow-hidden">
-            <div class="flex items-center justify-between gap-3 mb-4">
-                <h3 class="mobile-menu-title text-gold text-[13px] leading-none">Meniu</h3>
+        <div id="mobile-menu" class="quick-menu-shell md:hidden fixed top-[62px] right-3 w-[245px] max-w-[calc(100vw-1.5rem)] backdrop-blur-2xl z-[100] rounded-[1.35rem] flex flex-col p-3.5 transition-all duration-300 ease-out overflow-hidden">
+            <div class="flex items-center justify-between gap-3 mb-3">
+                <p class="text-[9px] uppercase tracking-[0.24em] text-gray-500 font-bold">Acces rapid</p>
 
-                <button id="close-menu-btn" aria-label="Închide meniul" class="w-9 h-9 rounded-full text-gold bg-white/5 flex items-center justify-center hover:bg-gold hover:text-black transition tap-target shrink-0">
-                    <i class="fa-solid fa-xmark text-base"></i>
+                <button id="close-menu-btn" aria-label="Închide meniul" class="w-8 h-8 rounded-full text-gold bg-white/6 flex items-center justify-center hover:bg-gold hover:text-black transition tap-target shrink-0">
+                    <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <nav class="flex flex-col gap-1.5">
-                <a href="#despre" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[17px]">Despre George</span>
-                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
-                </a>
-                <a href="#servicii" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[17px]">Listă Prețuri</span>
-                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
-                </a>
-                <a href="#program" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[17px]">Program</span>
-                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
-                </a>
-                <a href="#galerie" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[17px]">Portofoliu</span>
-                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
-                </a>
-                <a href="#contact" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[17px]">Locație & Contact</span>
-                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
-                </a>
-            </nav>
+            <button id="terms-open-btn" type="button" class="quick-menu-link w-full rounded-2xl px-3.5 py-3 text-left text-white transition hover:bg-white/10 active:scale-[0.98]">
+                <span class="block font-serif italic text-[17px] leading-tight">Termeni și condiții</span>
+                <span class="block text-[9px] uppercase tracking-[0.18em] text-gold/80 mt-1">citește rapid</span>
+            </button>
 
-            <div class="pt-4 mt-3">
-                <div class="grid grid-cols-3 gap-2.5">
-                    <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white transition">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                    </a>
-                    <a href="tel:+40741917899" aria-label="Sună" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-gold hover:text-black transition">
-                        <i class="fa-solid fa-phone text-base"></i>
-                    </a>
-                    <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white transition">
-                        <i class="fa-brands fa-facebook-f text-lg"></i>
-                    </a>
+            <div class="grid grid-cols-3 gap-2.5 mt-3">
+                <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" class="quick-menu-social h-11 rounded-2xl flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                </a>
+                <a href="tel:+40741917899" aria-label="Telefon" class="quick-menu-social h-11 rounded-2xl flex items-center justify-center text-gold hover:bg-gold hover:text-black transition">
+                    <i class="fa-solid fa-phone text-sm"></i>
+                </a>
+                <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="quick-menu-social h-11 rounded-2xl flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white transition">
+                    <i class="fa-brands fa-facebook-f text-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Modal Termeni și condiții -->
+        <div id="terms-modal" class="fixed inset-0 z-[220] bg-black/65 backdrop-blur-md flex items-center justify-center px-4">
+            <div id="terms-panel" class="relative w-full max-w-[520px] rounded-[1.6rem] bg-[#070707]/95 shadow-[0_30px_90px_rgba(0,0,0,0.85),0_0_35px_rgba(212,175,55,0.16)] overflow-hidden">
+                <button id="terms-close-btn" type="button" aria-label="Închide termenii și condițiile" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/7 text-gold flex items-center justify-center hover:bg-gold hover:text-black transition z-10">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+
+                <div class="p-5 pt-6 md:p-7 md:pt-7 overflow-y-auto max-h-[55vh] md:max-h-[58vh]">
+                    <p class="text-gold text-[9px] uppercase tracking-[0.28em] font-bold mb-2">HaHa FreshCut</p>
+                    <h3 class="font-serif italic text-white text-2xl md:text-3xl mb-4">Termeni și condiții</h3>
+
+                    <div class="space-y-4 text-gray-300 text-[12px] md:text-sm leading-relaxed font-light">
+                        <p>Programările se fac telefonic sau prin WhatsApp, în funcție de disponibilitate. Ora programării trebuie respectată pentru ca serviciile să poată fi oferite fără întârziere.</p>
+                        <p>Prețurile afișate pe site sunt informative și pot varia în funcție de serviciul ales sau de complexitatea lucrării. Confirmarea finală se face la salon.</p>
+                        <p>În cazul în care nu mai poți ajunge la programare, te rugăm să anunți din timp. Astfel putem elibera locul pentru alt client.</p>
+                        <p>Imaginile din portofoliu sunt folosite pentru prezentarea serviciilor și a stilului HaHa FreshCut. Datele de contact sunt folosite doar pentru programări și comunicare directă cu salonul.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -760,56 +790,56 @@
                         </div>
 
                         <div class="space-y-0 text-[13px] md:text-base font-light">
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Tuns clasic</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">50</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">20'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Tuns fade</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">60</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">30'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Tuns barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">15</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">10'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Contur barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">20</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">5'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Vopsit barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">25</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">10'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Aranjat păr</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">15</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">10'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Piling facial</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">15</span>
                                     <span class="text-gold italic w-8 text-center text-[10px] md:text-sm">10'</span>
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 px-1 md:px-2 hover:bg-white/5 transition rounded-lg">
+                            <div class="flex justify-between items-center py-3 md:py-4 px-1 md:px-2 rounded-lg">
                                 <span class="font-serif text-gray-200">Spălat cap</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium">15</span>
@@ -831,23 +861,23 @@
                                 <span class="font-serif">Luni</span>
                                 <span class="text-gray-500 uppercase tracking-widest text-[10px] md:text-xs font-bold">Închis</span>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold hover:text-gold transition">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold">
                                 <span class="font-serif">Marți</span>
                                 <span class="text-gray-300">10:00 - 18:00</span>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold hover:text-gold transition">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold">
                                 <span class="font-serif">Miercuri</span>
                                 <span class="text-gray-300">10:00 - 18:00</span>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold hover:text-gold transition">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold">
                                 <span class="font-serif">Joi</span>
                                 <span class="text-gray-300">10:00 - 18:00</span>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold hover:text-gold transition">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold">
                                 <span class="font-serif">Vineri</span>
                                 <span class="text-gray-300">10:00 - 18:00</span>
                             </div>
-                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold hover:text-gold transition">
+                            <div class="flex justify-between items-center py-3 md:py-4 divider-gold">
                                 <span class="font-serif">Sâmbătă</span>
                                 <span class="text-gray-300">10:00 - 18:00</span>
                             </div>
@@ -934,7 +964,7 @@
                                 Buzău, România
                             </p>
 
-                            <a href="https://www.google.com/maps/search/?api=1&query=Strada%20Alexandru%20Marghiloman%20203%2C%20Buz%C4%83u%2C%20Rom%C3%A2nia" target="_blank" class="tap-target inline-flex items-center justify-center md:justify-start font-bold uppercase text-[10px] md:text-[11px] tracking-widest text-gold hover:text-white transition mb-6 md:mb-8 group">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Strada%20Alexandru%20Marghiloman%20203%2C%20Buz%C4%83u%2C%20Rom%C3%A2nia" target="_blank" rel="noopener noreferrer" class="tap-target inline-flex items-center justify-center md:justify-start font-bold uppercase text-[10px] md:text-[11px] tracking-widest text-gold hover:text-white transition mb-6 md:mb-8 group">
                                 <i class="fa-solid fa-map-location-dot mr-2 text-lg group-hover:scale-110 transition"></i> Deschide în Google Maps
                             </a>
 
@@ -947,11 +977,11 @@
                             </a>
 
                             <div class="flex justify-center md:justify-start gap-4">
-                                <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(37,211,102,0.5)]">
+                                <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(37,211,102,0.5)]">
                                     <i class="fa-brands fa-whatsapp text-lg md:text-xl"></i>
                                 </a>
 
-                                <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(24,119,242,0.5)]">
+                                <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(24,119,242,0.5)]">
                                     <i class="fa-brands fa-facebook-f text-lg md:text-xl"></i>
                                 </a>
 
@@ -976,7 +1006,7 @@
 
             <div class="mx-auto max-w-md px-4 mb-6 md:mb-8 flex justify-center">
                 <!-- Zona Credite Link complet (Logo + Text 2 culori) -->
-                <a href="https://cmn-web-designer.vercel.app/" target="_blank" class="flex items-center justify-center gap-3 px-2 group">
+                <a href="https://cmn-web-designer.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 px-2 group">
                     <div class="flex-shrink-0 group-hover:scale-110 transition duration-300">
                         <!-- NOU: Logo transparent CMN -->
                         <img src="https://i.postimg.cc/SR6rQH74/cmn-lion-logo-transparent-clean.png" alt="CMN WebDesigner Logo" class="footer-logo">
@@ -1074,23 +1104,50 @@
         const closeBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const termsOpenBtn = document.getElementById('terms-open-btn');
+        const termsModal = document.getElementById('terms-modal');
+        const termsCloseBtn = document.getElementById('terms-close-btn');
+
+        function lockPage() {
+            document.body.style.overflow = 'hidden';
+        }
+
+        function unlockPage() {
+            if (!lightbox.classList.contains('is-open') && !termsModal.classList.contains('is-open') && !mobileMenu.classList.contains('is-open')) {
+                document.body.style.overflow = '';
+            }
+        }
 
         function openMenu() {
             mobileMenu.classList.add('is-open');
             mobileBackdrop.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
+            lockPage();
         }
         function closeMenu() {
             mobileMenu.classList.remove('is-open');
             mobileBackdrop.classList.remove('is-open');
-            document.body.style.overflow = '';
+            unlockPage();
+        }
+        function openTerms() {
+            closeMenu();
+            termsModal.classList.add('is-open');
+            lockPage();
+        }
+        function closeTerms() {
+            termsModal.classList.remove('is-open');
+            unlockPage();
         }
         if (mobileBtn && closeBtn && mobileMenu && mobileBackdrop) {
             mobileBtn.addEventListener('click', openMenu);
             closeBtn.addEventListener('click', closeMenu);
             mobileBackdrop.addEventListener('click', closeMenu);
-            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+        }
+        if (termsOpenBtn && termsModal && termsCloseBtn) {
+            termsOpenBtn.addEventListener('click', openTerms);
+            termsCloseBtn.addEventListener('click', closeTerms);
+            termsModal.addEventListener('click', (event) => {
+                if (event.target === termsModal) closeTerms();
+            });
         }
 
         // Animated Counter Logic (0 to 300 clients) - repornește de fiecare dată când intră în ecran
@@ -1177,13 +1234,13 @@
             lightboxImg.src = imgSrc;
             lightbox.classList.add('is-open');
             document.body.classList.add('lightbox-open');
-            document.body.style.overflow = 'hidden';
+            lockPage();
         }
         function closeLightbox() {
             lightbox.classList.remove('is-open');
             document.body.classList.remove('lightbox-open');
             setTimeout(() => { lightboxImg.src = ''; }, 300); // curăță imaginea după tranziție
-            document.body.style.overflow = '';
+            unlockPage();
         }
         function showNextImage() {
             currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
@@ -1212,6 +1269,14 @@
 
         // Suport Tastatură (Săgeți și ESC)
         document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && termsModal.classList.contains('is-open')) {
+                closeTerms();
+                return;
+            }
+            if (event.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+                closeMenu();
+                return;
+            }
             if (!lightbox.classList.contains('is-open')) return;
             if (event.key === 'Escape') closeLightbox();
             if (event.key === 'ArrowRight') showNextImage();
