@@ -454,7 +454,7 @@
         }
 
 
-        /* Meniu mobil premium: panou lateral, nu full screen */
+        /* Meniu mobil premium: mic, discret, fără chenare grele */
         #mobile-menu-backdrop {
             opacity: 0;
             pointer-events: none;
@@ -464,24 +464,38 @@
             pointer-events: auto;
         }
         #mobile-menu {
-            transform: translate3d(115%, 0, 0);
-            will-change: transform;
+            transform: translate3d(112%, -8px, 0) scale(.96);
+            transform-origin: top right;
+            opacity: 0;
+            pointer-events: none;
+            will-change: transform, opacity;
         }
         #mobile-menu.is-open {
-            transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-title {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: .34em;
+            text-transform: uppercase;
         }
         .mobile-drawer-link {
-            background: linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.02));
-            border: 1px solid rgba(212,175,55,.13);
-            box-shadow: 0 14px 35px rgba(0,0,0,.22);
+            background: transparent;
+            border: 0;
+            box-shadow: none;
         }
         .mobile-drawer-link:active {
             transform: scale(.985);
         }
         .mobile-social-btn {
-            background: rgba(255,255,255,.045);
-            border: 1px solid rgba(212,175,55,.24);
-            box-shadow: 0 12px 30px rgba(0,0,0,.25);
+            background: rgba(255,255,255,.055);
+            border: 0;
+            box-shadow: 0 12px 30px rgba(0,0,0,.22);
+        }
+        .bottom-call-bar {
+            background: linear-gradient(135deg, rgba(212,175,55,.96), rgba(255,242,184,.92), rgba(212,175,55,.96));
+            box-shadow: 0 10px 35px rgba(0,0,0,.45), 0 0 24px rgba(212,175,55,.24);
         }
 
         /* Fix-uri tehnice mobile: fără schimbări vizuale */
@@ -562,68 +576,61 @@
                 </nav>
 
                 <!-- Meniu Hamburger Premium -->
-                <button id="mobile-menu-btn" aria-label="Deschide meniul" class="md:hidden tap-target relative z-10 h-10 px-3 rounded-full border border-gold/40 bg-black/55 backdrop-blur-xl shadow-[0_0_18px_rgba(212,175,55,0.16)] flex items-center gap-2 focus:outline-none active:scale-[0.98] transition group">
-                    <span class="text-[9px] font-bold uppercase tracking-[0.22em] text-gold">Meniu</span>
+                <button id="mobile-menu-btn" aria-label="Deschide meniul" class="md:hidden tap-target relative z-10 h-10 px-2.5 rounded-full bg-black/35 backdrop-blur-xl flex items-center gap-2 focus:outline-none active:scale-[0.96] transition group">
+                    <span class="mobile-menu-title text-[10px] text-gold leading-none">Meniu</span>
                     <span class="flex flex-col gap-[4px] items-end">
                         <span class="block w-5 h-[1.5px] bg-gold rounded-full transition-all duration-300 group-hover:w-6"></span>
-                        <span class="block w-3.5 h-[1.5px] bg-gold rounded-full transition-all duration-300 group-hover:w-6"></span>
-                        <span class="block w-6 h-[1.5px] bg-gold rounded-full transition-all duration-300"></span>
+                        <span class="block w-3 h-[1.5px] bg-gold/80 rounded-full transition-all duration-300 group-hover:w-5"></span>
                     </span>
                 </button>
             </div>
         </header>
 
         <!-- Meniu Mobil Premium - panou lateral -->
-        <div id="mobile-menu-backdrop" class="md:hidden fixed inset-0 bg-black/55 backdrop-blur-[4px] z-[95] transition-opacity duration-300"></div>
+        <div id="mobile-menu-backdrop" class="md:hidden fixed inset-0 bg-transparent z-[95] transition-opacity duration-300"></div>
 
-        <div id="mobile-menu" class="md:hidden fixed top-3 right-3 bottom-3 w-[82vw] max-w-[350px] bg-black/95 backdrop-blur-2xl z-[100] border border-gold/25 rounded-[2rem] shadow-[0_24px_80px_rgba(0,0,0,0.75)] flex flex-col p-5 transition-transform duration-300 ease-out overflow-y-auto">
-            <div class="flex items-start justify-between gap-4 mb-7">
-                <div>
-                    <p class="text-[9px] uppercase tracking-[0.32em] text-gold font-bold mb-2">HaHa FreshCut</p>
-                    <h3 class="font-serif italic text-white text-2xl leading-none">Meniu rapid</h3>
-                </div>
+        <div id="mobile-menu" class="md:hidden fixed top-[64px] right-3 w-[72vw] max-w-[280px] bg-black/88 backdrop-blur-2xl z-[100] rounded-[1.55rem] shadow-[0_20px_70px_rgba(0,0,0,0.72)] flex flex-col p-4 transition-all duration-300 ease-out overflow-hidden">
+            <div class="flex items-center justify-between gap-3 mb-4">
+                <h3 class="mobile-menu-title text-gold text-[13px] leading-none">Meniu</h3>
 
-                <button id="close-menu-btn" aria-label="Închide meniul" class="w-11 h-11 rounded-full border border-gold/35 text-gold bg-white/5 flex items-center justify-center hover:bg-gold hover:text-black transition tap-target shrink-0">
-                    <i class="fa-solid fa-xmark text-xl"></i>
+                <button id="close-menu-btn" aria-label="Închide meniul" class="w-9 h-9 rounded-full text-gold bg-white/5 flex items-center justify-center hover:bg-gold hover:text-black transition tap-target shrink-0">
+                    <i class="fa-solid fa-xmark text-base"></i>
                 </button>
             </div>
 
-            <nav class="flex flex-col gap-3">
-                <a href="#despre" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-2xl px-4 py-3.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[20px]">Despre George</span>
-                    <i class="fa-solid fa-chevron-right text-gold text-xs"></i>
+            <nav class="flex flex-col gap-1.5">
+                <a href="#despre" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
+                    <span class="font-serif italic text-[17px]">Despre George</span>
+                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
                 </a>
-                <a href="#servicii" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-2xl px-4 py-3.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[20px]">Listă Prețuri</span>
-                    <i class="fa-solid fa-chevron-right text-gold text-xs"></i>
+                <a href="#servicii" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
+                    <span class="font-serif italic text-[17px]">Listă Prețuri</span>
+                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
                 </a>
-                <a href="#program" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-2xl px-4 py-3.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[20px]">Program</span>
-                    <i class="fa-solid fa-chevron-right text-gold text-xs"></i>
+                <a href="#program" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
+                    <span class="font-serif italic text-[17px]">Program</span>
+                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
                 </a>
-                <a href="#galerie" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-2xl px-4 py-3.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[20px]">Portofoliu</span>
-                    <i class="fa-solid fa-chevron-right text-gold text-xs"></i>
+                <a href="#galerie" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
+                    <span class="font-serif italic text-[17px]">Portofoliu</span>
+                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
                 </a>
-                <a href="#contact" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-2xl px-4 py-3.5 text-white hover:text-gold transition">
-                    <span class="font-serif italic text-[20px]">Locație & Contact</span>
-                    <i class="fa-solid fa-chevron-right text-gold text-xs"></i>
+                <a href="#contact" class="mobile-link mobile-drawer-link flex items-center justify-between rounded-xl px-1 py-2.5 text-white hover:text-gold transition">
+                    <span class="font-serif italic text-[17px]">Locație & Contact</span>
+                    <i class="fa-solid fa-angle-right text-gold/70 text-[10px]"></i>
                 </a>
             </nav>
 
-            <div class="mt-auto pt-6">
-                <div class="h-px bg-gold/15 w-full mb-5"></div>
-                <p class="text-[9px] text-gray-500 uppercase tracking-[0.24em] font-bold mb-3">Contact rapid</p>
-
-                <div class="grid grid-cols-3 gap-3">
-                    <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" class="mobile-social-btn h-12 rounded-2xl flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition">
-                        <i class="fa-brands fa-whatsapp text-xl"></i>
+            <div class="pt-4 mt-3">
+                <div class="grid grid-cols-3 gap-2.5">
+                    <a href="https://wa.me/40741917899" aria-label="WhatsApp" target="_blank" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-[#25D366] hover:text-white transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
                     </a>
-                    <a href="tel:+40741917899" aria-label="Sună" class="mobile-social-btn h-12 rounded-2xl flex items-center justify-center text-gold hover:bg-gold hover:text-black hover:border-gold transition">
-                        <i class="fa-solid fa-phone text-lg"></i>
+                    <a href="tel:+40741917899" aria-label="Sună" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-gold hover:text-black transition">
+                        <i class="fa-solid fa-phone text-base"></i>
                     </a>
-                    <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" class="mobile-social-btn h-12 rounded-2xl flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition">
-                        <i class="fa-brands fa-facebook-f text-xl"></i>
+                    <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" aria-label="Facebook" target="_blank" class="mobile-social-btn h-10 rounded-xl flex items-center justify-center text-gold hover:bg-[#1877F2] hover:text-white transition">
+                        <i class="fa-brands fa-facebook-f text-lg"></i>
                     </a>
                 </div>
             </div>
@@ -948,10 +955,6 @@
                                     <i class="fa-brands fa-facebook-f text-lg md:text-xl"></i>
                                 </a>
 
-                                <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-gold hover:text-black hover:border-gold transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(212,175,55,0.5)]">
-                                    <i class="fa-brands fa-instagram text-lg md:text-xl"></i>
-                                </a>
-
                                 <a href="tel:+40741917899" aria-label="Sună" class="w-11 h-11 md:w-12 md:h-12 rounded-full border border-gold/35 flex items-center justify-center text-gold hover:bg-gold hover:text-black hover:border-gold transition shadow-[0_0_10px_rgba(212,175,55,0.1)] hover:shadow-[0_0_15px_rgba(212,175,55,0.5)]">
                                     <i class="fa-solid fa-phone text-sm md:text-md"></i>
                                 </a>
@@ -1018,21 +1021,11 @@
     </div>
 
     <!-- Bară fixă mobil -->
-    <div class="md:hidden fixed bottom-0 left-0 w-full bg-black/95 backdrop-blur-md border-t border-gold/20 p-2 z-[90] pb-3">
-        <div class="flex gap-2 max-w-md mx-auto">
-            <a href="tel:+40741917899" class="flex-1 flex flex-col items-center justify-center bg-gold text-black py-2 rounded-xl active:scale-[0.98] transition shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-                <i class="fa-solid fa-phone text-[12px] mb-1"></i>
-                <span class="text-[8px] font-bold uppercase tracking-widest">Sună</span>
-            </a>
-
-            <a href="https://wa.me/40741917899?text=Salut!%20Vreau%20să%20mă%20programez." target="_blank" class="flex-1 flex flex-col items-center justify-center bg-[#25D366] text-white py-2 rounded-xl active:scale-[0.98] transition shadow-[0_0_15px_rgba(37,211,102,0.2)]">
-                <i class="fa-brands fa-whatsapp text-[13px] mb-1"></i>
-                <span class="text-[8px] font-bold uppercase tracking-widest">WhatsApp</span>
-            </a>
-
-            <a href="https://www.facebook.com/p/HaHa-FreshCut-61552575120636/" target="_blank" class="flex-1 flex flex-col items-center justify-center bg-[#1877F2] text-white py-2 rounded-xl active:scale-[0.98] transition shadow-[0_0_15px_rgba(24,119,242,0.22)]">
-                <i class="fa-brands fa-facebook-f text-[13px] mb-1"></i>
-                <span class="text-[8px] font-bold uppercase tracking-widest">Facebook</span>
+    <div class="md:hidden fixed bottom-0 left-0 w-full z-[90] px-4 pb-3 pointer-events-none">
+        <div class="max-w-[310px] mx-auto pointer-events-auto">
+            <a href="tel:+40741917899" class="bottom-call-bar h-11 rounded-full flex items-center justify-center gap-2 text-black active:scale-[0.98] transition px-5">
+                <i class="fa-solid fa-phone text-[12px]"></i>
+                <span class="text-[10px] font-extrabold uppercase tracking-[0.18em]">Sună pentru o programare</span>
             </a>
         </div>
     </div>
@@ -1100,57 +1093,72 @@
             mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
         }
 
-        // Animated Counter Logic (0 to 300 clients)
+        // Animated Counter Logic (0 to 300 clients) - repornește de fiecare dată când intră în ecran
         const counterElement = document.getElementById('clientsCounter');
         const targetNumber = 300; 
-        const duration = 2000;
-        let counterStarted = false;
+        const duration = 1600;
+        let counterInView = false;
+        let counterRaf = null;
 
         function animateClientsCounter() {
-            if (!counterElement || counterStarted) return;
-            counterStarted = true;
+            if (!counterElement) return;
+            if (counterRaf) cancelAnimationFrame(counterRaf);
 
+            counterElement.innerText = '0';
             let startTimestamp = null;
+
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                counterElement.innerText = Math.floor(progress * targetNumber);
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                counterElement.innerText = Math.floor(easedProgress * targetNumber);
 
                 if (progress < 1) {
-                    window.requestAnimationFrame(step);
+                    counterRaf = window.requestAnimationFrame(step);
                 } else {
                     counterElement.innerText = targetNumber;
+                    counterRaf = null;
                 }
             };
 
-            window.requestAnimationFrame(step);
+            counterRaf = window.requestAnimationFrame(step);
         }
 
         if (counterElement) {
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
+                    const entry = entries[0];
+
+                    if (entry.isIntersecting && !counterInView) {
+                        counterInView = true;
                         animateClientsCounter();
-                        observer.disconnect();
                     }
-                }, { threshold: 0.25 });
 
-                observer.observe(counterElement);
+                    if (!entry.isIntersecting) {
+                        counterInView = false;
+                    }
+                }, { threshold: 0.35 });
+
+                observer.observe(counterElement.closest('.stats-card') || counterElement);
             } else {
-                animateClientsCounter();
+                const checkCounterFallback = () => {
+                    const rect = counterElement.getBoundingClientRect();
+                    const visible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                    if (visible && !counterInView) {
+                        counterInView = true;
+                        animateClientsCounter();
+                    }
+
+                    if (!visible) {
+                        counterInView = false;
+                    }
+                };
+
+                window.addEventListener('scroll', checkCounterFallback, { passive: true });
+                window.addEventListener('load', checkCounterFallback);
+                checkCounterFallback();
             }
-
-            const checkCounterFallback = () => {
-                if (counterStarted) return;
-                const rect = counterElement.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    animateClientsCounter();
-                    window.removeEventListener('scroll', checkCounterFallback);
-                }
-            };
-
-            window.addEventListener('scroll', checkCounterFallback, { passive: true });
-            window.addEventListener('load', checkCounterFallback);
         }
 
         // Lightbox Gallery Logic (with mobile swipe support)
