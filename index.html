@@ -1134,6 +1134,41 @@
             }
         }
 
+
+        /* V10: poza exact sub HaHa FreshCut, fara text pe poza */
+        .hero-photo-under-text {
+            margin: 18px auto 22px !important;
+        }
+
+        .hero-photo-under-text::after {
+            content: none !important;
+            display: none !important;
+        }
+
+        .barbering-label {
+            color: #D4AF37;
+            font-size: 10px;
+            line-height: 1.4;
+            letter-spacing: .42em;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin: 0 0 18px;
+            opacity: .92;
+        }
+
+        .stats-number span {
+            display: inline-block;
+            min-width: 2.2ch;
+        }
+
+        @media (max-width: 767px) {
+            .barbering-label {
+                font-size: 8.5px;
+                letter-spacing: .26em;
+                margin-bottom: 14px;
+            }
+        }
+
     </style>
 </head>
 
@@ -1210,6 +1245,11 @@
                     FreshCut
                 </h2>
 
+                <!-- Poză premium exact sub HaHa FreshCut -->
+                <div class="hero-photo-under-text">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1400&q=85" alt="Tunsoare premium HaHa FreshCut">
+                </div>
+
                 <div class="gold-line max-w-sm mx-auto mb-8"></div>
 
                 <p class="text-gray-300 text-[13px] md:text-base font-light mb-4 max-w-md mx-auto leading-relaxed">
@@ -1257,6 +1297,8 @@
                                 Fie că vorbim de un tuns clasic perfect executat sau de un skin fade impecabil, timpul tău va fi respectat, iar rezultatul va fi exact așa cum îți dorești. Fără grabă.
                             </p>
 
+                            <p class="barbering-label">The Art of Barbering</p>
+
                             <!-- Statistici -->
                             <div class="grid grid-cols-3 gap-2 md:gap-3 mb-5">
                                 <div class="stats-card">
@@ -1272,21 +1314,6 @@
                                 <div class="stats-card">
                                     <div class="stats-number">7</div>
                                     <div class="stats-label">ani experiență</div>
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-3 gap-2 md:gap-3">
-                                <div class="rounded-2xl border border-gold/20 bg-black/40 p-3 text-center">
-                                    <i class="fa-solid fa-scissors text-gold text-sm mb-2"></i>
-                                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Precizie</p>
-                                </div>
-                                <div class="rounded-2xl border border-gold/20 bg-black/40 p-3 text-center">
-                                    <i class="fa-solid fa-crown text-gold text-sm mb-2"></i>
-                                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Premium</p>
-                                </div>
-                                <div class="rounded-2xl border border-gold/20 bg-black/40 p-3 text-center">
-                                    <i class="fa-solid fa-clock text-gold text-sm mb-2"></i>
-                                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Respect</p>
                                 </div>
                             </div>
                         </div>
