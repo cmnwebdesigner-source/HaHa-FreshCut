@@ -344,6 +344,184 @@
             }
         }
 
+
+        /* Hero mai sus + brici SVG real */
+        .hero-content-up {
+            transform: translateY(-86px);
+        }
+
+        .real-razor-wrap {
+            width: 156px;
+            height: 84px;
+            margin: 14px auto 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 16px 28px rgba(212, 175, 55, 0.22));
+        }
+
+        .real-razor-wrap::before {
+            content: "";
+            position: absolute;
+            width: 118px;
+            height: 118px;
+            border-radius: 999px;
+            border: 1px solid rgba(212,175,55,0.28);
+            animation: softSpin 9s linear infinite;
+        }
+
+        .real-razor-svg {
+            width: 142px;
+            height: auto;
+            transform-origin: center;
+            animation: realRazorOpenSpin 4.8s ease-in-out infinite;
+        }
+
+        .real-razor-spark {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #D4AF37;
+            box-shadow: 0 0 16px rgba(212,175,55,0.95);
+            animation: sparkMove 2.5s ease-in-out infinite;
+        }
+
+        .real-razor-spark.s1 { top: 7px; right: 25px; }
+        .real-razor-spark.s2 { bottom: 9px; left: 28px; animation-delay: .65s; }
+        .real-razor-spark.s3 { top: 34px; left: 4px; animation-delay: 1.15s; }
+
+        @keyframes realRazorOpenSpin {
+            0% { transform: rotate(-16deg) scale(.95); }
+            28% { transform: rotate(8deg) scale(1); }
+            58% { transform: rotate(372deg) scale(1.04); }
+            100% { transform: rotate(344deg) scale(.95); }
+        }
+
+        /* Animatii carduri preturi/program */
+        .animated-service-card {
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+
+        .animated-service-card::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: conic-gradient(from var(--angle), transparent 0deg, rgba(212,175,55,.08) 70deg, rgba(212,175,55,.55) 120deg, transparent 170deg, transparent 360deg);
+            animation: borderSpin 7s linear infinite;
+            opacity: .75;
+            z-index: 0;
+        }
+
+        .animated-service-card::after {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            background: linear-gradient(145deg, rgba(18,18,16,.96), rgba(4,4,4,.96));
+            z-index: 1;
+        }
+
+        .animated-service-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-row {
+            transition: transform .28s ease, background .28s ease, padding-left .28s ease;
+            border-radius: 14px;
+        }
+
+        .price-row:hover {
+            transform: translateX(5px);
+            background: rgba(212,175,55,.055);
+            padding-left: 10px;
+        }
+
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes borderSpin {
+            to { --angle: 360deg; }
+        }
+
+        /* Linii animate langa poza lui George */
+        .barber-photo-frame {
+            position: relative;
+        }
+
+        .barber-photo-frame::before,
+        .barber-photo-frame::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            pointer-events: none;
+            border: 1px solid rgba(212,175,55,.75);
+            border-radius: 26px;
+            transition: transform .12s linear;
+        }
+
+        .barber-photo-frame::before {
+            inset: -10px 12px 12px -10px;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            transform: translateY(var(--lineShift, 0px));
+        }
+
+        .barber-photo-frame::after {
+            inset: 12px -10px -10px 12px;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            transform: translateY(calc(var(--lineShift, 0px) * -1));
+        }
+
+        .barber-moving-line {
+            position: absolute;
+            z-index: 4;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,.95), transparent);
+            height: 1px;
+            width: 78%;
+            left: 11%;
+            pointer-events: none;
+            animation: photoLineMove 3.2s ease-in-out infinite;
+        }
+
+        .barber-moving-line.top { top: 18px; }
+        .barber-moving-line.bottom { bottom: 18px; animation-delay: 1.6s; }
+
+        @keyframes photoLineMove {
+            0%, 100% { transform: translateX(-18px); opacity: .25; }
+            50% { transform: translateX(18px); opacity: .95; }
+        }
+
+        @media (max-width: 767px) {
+            .hero-content-up {
+                transform: translateY(-105px);
+            }
+
+            .real-razor-wrap {
+                width: 122px;
+                height: 64px;
+                margin-top: 10px;
+                margin-bottom: 13px;
+            }
+
+            .real-razor-wrap::before {
+                width: 92px;
+                height: 92px;
+            }
+
+            .real-razor-svg {
+                width: 112px;
+            }
+        }
+
     </style>
 </head>
 
@@ -411,7 +589,7 @@
                 <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[220px] md:w-[420px] h-[220px] md:h-[420px] rounded-full border border-white/10 animate-floatSlow"></div>
             </div>
 
-            <div class="relative z-10 text-center px-4 w-full max-w-4xl mx-auto -mt-12 md:-mt-16" data-aos="fade-up" data-aos-duration="900">
+            <div class="hero-content-up relative z-10 text-center px-4 w-full max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="900">
                 <p class="text-gold tracking-[0.32em] uppercase text-[9px] md:text-xs mb-5 md:mb-6 font-bold">Buzău &bull; Alexandru Marghiloman 203</p>
 
                 <h1 class="mobile-tight-title text-6xl md:text-8xl font-serif text-white mb-1 uppercase tracking-wide">
@@ -424,26 +602,52 @@
 
                 <div class="gold-line max-w-xs mx-auto mb-7"></div>
 
-                <p class="text-gray-300 text-[13px] md:text-base font-light mb-4 max-w-md mx-auto leading-relaxed">
-                    Eleganță, precizie și o experiență premium. Locul unde detaliile fac cu adevărat diferența.
+                <p class="text-gray-300 text-[13px] md:text-base font-light mb-2 max-w-md mx-auto leading-relaxed">
+                    Eleganță, precizie și o experiență de top. Locul unde detaliile fac cu adevărat diferența.
                 </p>
 
-                <!-- Animație brici premium -->
-                <div class="razor-stage" aria-hidden="true">
-                    <div class="razor-orbit"></div>
-                    <div class="razor-spark one"></div>
-                    <div class="razor-spark two"></div>
-                    <div class="razor-spark three"></div>
-                    <div class="razor">
-                        <div class="razor-blade"></div>
-                        <div class="razor-handle"></div>
-                        <div class="razor-pivot"></div>
-                    </div>
+                <!-- Brici real SVG sub text -->
+                <div class="real-razor-wrap" aria-hidden="true">
+                    <span class="real-razor-spark s1"></span>
+                    <span class="real-razor-spark s2"></span>
+                    <span class="real-razor-spark s3"></span>
+
+                    <svg class="real-razor-svg" viewBox="0 0 260 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 55C58 38 92 28 135 24C170 21 204 26 236 38C242 40 244 48 238 52C205 76 159 89 101 89C72 89 47 80 30 65C25 61 25 58 30 55Z" fill="url(#bladeGradient)" stroke="rgba(255,255,255,.85)" stroke-width="3"/>
+                        <path d="M62 61C94 50 133 46 177 48" stroke="rgba(0,0,0,.28)" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M39 62C70 78 108 83 156 76" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M48 58C70 44 96 35 128 31" stroke="rgba(212,175,55,.85)" stroke-width="2" stroke-linecap="round"/>
+
+                        <path d="M57 64C43 76 34 88 30 100C47 103 66 99 87 88L129 65C136 61 135 51 127 49L92 40C81 38 71 40 62 47L57 64Z" fill="url(#handleGradient)" stroke="rgba(212,175,55,.9)" stroke-width="3"/>
+                        <path d="M47 92C58 90 71 84 86 75" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round"/>
+
+                        <circle cx="129" cy="58" r="12" fill="url(#pivotGradient)" stroke="rgba(255,255,255,.75)" stroke-width="3"/>
+                        <circle cx="129" cy="58" r="4" fill="#050505"/>
+
+                        <defs>
+                            <linearGradient id="bladeGradient" x1="30" y1="28" x2="238" y2="87" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ffffff"/>
+                                <stop offset=".38" stop-color="#b9b9b9"/>
+                                <stop offset=".62" stop-color="#ffffff"/>
+                                <stop offset="1" stop-color="#7d7d7d"/>
+                            </linearGradient>
+                            <linearGradient id="handleGradient" x1="30" y1="42" x2="130" y2="102" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#111111"/>
+                                <stop offset=".45" stop-color="#D4AF37"/>
+                                <stop offset="1" stop-color="#3a2a08"/>
+                            </linearGradient>
+                            <radialGradient id="pivotGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(125 54) rotate(51) scale(24)">
+                                <stop stop-color="#ffffff"/>
+                                <stop offset=".4" stop-color="#D4AF37"/>
+                                <stop offset="1" stop-color="#050505"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
                 </div>
 
-                <div class="mt-5 flex items-center justify-center">
-                    <a href="#galerie" class="tap-target w-full sm:w-auto inline-flex justify-center items-center px-7 py-3.5 border border-gold/45 text-gold font-bold uppercase tracking-widest text-[11px] transition active:scale-95 hover:bg-gold hover:text-black">
-                        Vezi portofoliu
+                <div class="flex items-center justify-center">
+                    <a href="tel:+40741917899" class="tap-target w-full sm:w-auto inline-flex justify-center items-center px-7 py-3.5 bg-gold text-black font-bold uppercase tracking-widest text-[11px] transition active:scale-95 hover:bg-white">
+                        Fă o programare
                     </a>
                 </div>
             </div>
@@ -457,7 +661,9 @@
 
                         <!-- Poza frizerului -->
                         <div class="w-full md:w-1/2">
-                            <div class="aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
+                            <div id="barber-photo-frame" class="barber-photo-frame aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black gold-glow">
+                                <span class="barber-moving-line top"></span>
+                                <span class="barber-moving-line bottom"></span>
                                 <img src="images/481d1b8f-4ba9-451f-b40b-36fb2388ab11.jpg" alt="George Ciprian - HaHa FreshCut" class="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition duration-700">
                             </div>
                         </div>
@@ -503,7 +709,7 @@
                 <div class="grid grid-cols-2 gap-3 md:gap-6 lg:gap-12">
 
                     <!-- LISTA PREȚURI -->
-                    <div id="servicii" class="premium-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
+                    <div id="servicii" class="premium-card animated-service-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up">
                         <div class="text-center mb-5 md:mb-10">
                             <i class="fa-solid fa-scissors text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Listă prețuri</h3>
@@ -515,7 +721,7 @@
                         </div>
 
                         <div class="space-y-0 text-sm md:text-base font-light">
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Tuns clasic</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">50</span>
@@ -523,7 +729,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Tuns fade</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">60</span>
@@ -531,7 +737,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Tuns barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">15</span>
@@ -539,7 +745,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Contur barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">20</span>
@@ -547,7 +753,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Vopsit barbă</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">25</span>
@@ -555,7 +761,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Aranjat păr</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">15</span>
@@ -563,7 +769,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Piling facial</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">15</span>
@@ -571,7 +777,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 px-1 md:px-2">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 px-1 md:px-2">
                                 <span class="font-serif text-gray-200 text-[12px] sm:text-[14px] md:text-lg">Spălat cap</span>
                                 <div class="flex gap-3 sm:gap-6 md:gap-14 items-center">
                                     <span class="text-white w-8 text-center font-medium text-sm md:text-base">15</span>
@@ -582,44 +788,44 @@
                     </div>
 
                     <!-- PROGRAM -->
-                    <div id="program" class="premium-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
+                    <div id="program" class="premium-card animated-service-card rounded-2xl md:rounded-3xl p-3 md:p-8" data-aos="fade-up" data-aos-delay="120">
                         <div class="text-center mb-5 md:mb-12">
                             <i class="fa-regular fa-clock text-gold text-xl md:text-2xl mb-4"></i>
                             <h3 class="text-xl md:text-4xl font-serif text-white italic">Program</h3>
                         </div>
 
                         <div class="space-y-0 text-sm md:text-base font-light px-1 md:px-2">
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Luni</span>
                                 <span class="text-gray-500 uppercase tracking-widest text-[10px] md:text-xs font-bold">Închis</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Marți</span>
                                 <span class="text-gray-300 text-[11px] sm:text-sm md:text-base">10:00 - 18:00</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Miercuri</span>
                                 <span class="text-gray-300 text-[11px] sm:text-sm md:text-base">10:00 - 18:00</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Joi</span>
                                 <span class="text-gray-300 text-[11px] sm:text-sm md:text-base">10:00 - 18:00</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Vineri</span>
                                 <span class="text-gray-300 text-[11px] sm:text-sm md:text-base">10:00 - 18:00</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5 divider-gold">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5 divider-gold">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Sâmbătă</span>
                                 <span class="text-gray-300 text-[11px] sm:text-sm md:text-base">10:00 - 18:00</span>
                             </div>
 
-                            <div class="flex justify-between items-center py-3 md:py-5">
+                            <div class="price-row flex justify-between items-center py-3 md:py-5">
                                 <span class="font-serif text-[12px] sm:text-[14px] md:text-lg">Duminică</span>
                                 <span class="text-gold italic text-[10px] md:text-xs text-right leading-relaxed">DOAR pe baza<br>programărilor</span>
                             </div>
@@ -923,6 +1129,21 @@
             if (event.key === 'ArrowRight') showNextImage();
             if (event.key === 'ArrowLeft') showPrevImage();
         });
+
+
+        // Linii care se mișcă pe lângă poza lui George când glisezi
+        const barberPhotoFrame = document.getElementById('barber-photo-frame');
+
+        function animateBarberLinesOnScroll() {
+            if (!barberPhotoFrame) return;
+            const rect = barberPhotoFrame.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const progress = Math.max(-1, Math.min(1, (windowHeight / 2 - rect.top) / windowHeight));
+            barberPhotoFrame.style.setProperty('--lineShift', `${progress * 28}px`);
+        }
+
+        window.addEventListener('scroll', animateBarberLinesOnScroll, { passive: true });
+        animateBarberLinesOnScroll();
 
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
