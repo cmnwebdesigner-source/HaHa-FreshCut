@@ -443,6 +443,20 @@
                 transform: translateZ(0);
             }
 
+            /* Fix scroll rapid: oprește doar mișcarea AOS pe cardul cu poza lui George */
+            #despre .premium-card[data-aos],
+            #despre .premium-card[data-aos].aos-animate {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                animation: none !important;
+                filter: none !important;
+            }
+
+            #despre .premium-card[data-aos] * {
+                transform-style: flat;
+            }
+
             .gold-dust-layer-1,
             .gold-dust-layer-2,
             .photo-spark {
@@ -922,6 +936,17 @@
 
     <!-- Scripturi -->
     <script>
+        // Fix mobil: pe scroll rapid, AOS poate muta cardul cu poza exact când intră în ecran.
+        // Păstrăm designul identic și dezactivăm doar animația de intrare pentru secțiunea George pe mobil.
+        const isMobileScrollFix = window.matchMedia('(max-width: 767px)').matches;
+        if (isMobileScrollFix) {
+            document.querySelectorAll('#despre [data-aos]').forEach((el) => {
+                el.classList.add('aos-animate');
+                el.removeAttribute('data-aos');
+                el.removeAttribute('data-aos-delay');
+            });
+        }
+
         // Init AOS Animations
         if (window.AOS) {
             AOS.init({
